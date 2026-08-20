@@ -1,0 +1,1947 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Priyanka Gaonkar — Full Stack Developer</title>
+
+  <!-- SEO -->
+  <meta
+    name="description"
+    content="Computer Science Engineer and Full Stack Developer building web applications and software projects."
+  />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Priyanka Gaonkar — Full Stack Developer" />
+  <meta
+    property="og:description"
+    content="Computer Science Engineer and Full Stack Developer building web applications and software projects."
+  />
+  <meta property="og:type" content="website" />
+  <meta
+    property="og:image"
+    content="https://placehold.co/1200x630/0b1024/8b5cf6?text=Priyanka+Gaonkar"
+  />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta
+    name="twitter:title"
+    content="Priyanka Gaonkar — Full Stack Developer"
+  />
+  <meta
+    name="twitter:description"
+    content="Computer Science Engineer and Full Stack Developer."
+  />
+  <meta
+    name="twitter:image"
+    content="https://placehold.co/1200x630/0b1024/8b5cf6?text=Priyanka+Gaonkar"
+  />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Iconify -->
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#6366F1",
+            secondary: "#8B5CF6",
+            accent: "#06B6D4",
+            bgdeep: "#050816",
+            txt: "#F8FAFC",
+          },
+
+          fontFamily: {
+            display: ['"Space Grotesk"', "sans-serif"],
+            body: ['"Inter"', "sans-serif"],
+            alt: ['"Poppins"', "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+
+<body class="font-body bg-bgdeep text-txt selection:bg-secondary">
+
+  <!-- =====================================================
+       LOADER
+  ====================================================== -->
+
+  <div class="loader" id="loader">
+
+    <div class="flex flex-col items-center gap-4">
+
+      <div class="ring"></div>
+
+      <p class="font-display tracking-[0.3em] text-xs text-slate-400">
+        LOADING PORTFOLIO
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       BACKGROUND
+  ====================================================== -->
+
+  <div id="cursor-glow" class="hidden md:block"></div>
+
+  <canvas id="bg-canvas"></canvas>
+
+
+  <!-- Aurora -->
+  <div
+    class="aurora bg-indigo-600 w-[36rem] h-[36rem] -top-40 -left-40"
+  ></div>
+
+  <div
+    class="aurora bg-cyan-500 w-[30rem] h-[30rem] top-1/3 -right-40"
+  ></div>
+
+  <div
+    class="aurora bg-violet-600 w-[34rem] h-[34rem] bottom-0 left-1/4"
+  ></div>
+
+
+  <!-- =====================================================
+       NAVBAR
+  ====================================================== -->
+
+  <header
+    id="navbar"
+    class="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
+  >
+
+    <nav
+      class="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-10 py-5"
+    >
+
+      <!-- Logo -->
+      <a
+        href="#home"
+        class="font-display text-xl font-semibold tracking-wide"
+      >
+        <span class="gradient-text">PVG</span>
+      </a>
+
+
+      <!-- Desktop Navigation -->
+      <ul
+        class="hidden lg:flex items-center gap-9 text-sm text-slate-300 font-alt"
+      >
+
+        <li>
+          <a href="#home" class="navlink">Home</a>
+        </li>
+
+        <li>
+          <a href="#about" class="navlink">About</a>
+        </li>
+
+        <li>
+          <a href="#skills" class="navlink">Skills</a>
+        </li>
+
+        <li>
+          <a href="#experience" class="navlink">Experience</a>
+        </li>
+
+        <li>
+          <a href="#projects" class="navlink">Projects</a>
+        </li>
+
+        <li>
+          <a href="#resume" class="navlink">Resume</a>
+        </li>
+
+      </ul>
+
+
+      <!-- Navbar CTA -->
+      <a
+        href="#contact"
+        class="magnetic hidden lg:inline-flex btn-primary
+               text-sm font-alt font-medium
+               px-5 py-2.5 rounded-full
+               transition-all duration-300"
+      >
+        Let's Talk
+      </a>
+
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="menuBtn"
+        class="lg:hidden text-2xl"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobileMenu"
+      >
+        <iconify-icon icon="lucide:menu"></iconify-icon>
+      </button>
+
+    </nav>
+
+
+    <!-- Mobile Menu -->
+    <div
+      id="mobileMenu"
+      class="lg:hidden hidden glass mx-4 rounded-2xl
+             px-6 py-6 flex flex-col gap-4
+             text-slate-200 font-alt"
+    >
+
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#resume">Resume</a>
+      <a href="#contact">Contact</a>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- =====================================================
+       HERO
+  ====================================================== -->
+
+  <section
+    id="home"
+    class="section relative min-h-screen
+           flex items-center justify-center
+           px-6 pt-32 pb-20"
+  >
+
+    <div class="max-w-5xl mx-auto text-center">
+
+      <!-- Badge -->
+      <p class="reveal badge inline-block mb-6">
+        COMPUTER SCIENCE ENGINEER
+      </p>
+
+
+      <!-- Name -->
+      <h1
+        class="reveal font-display font-bold
+               leading-[1.05]
+               text-5xl sm:text-6xl md:text-8xl"
+      >
+        <span class="gradient-text">
+          Priyanka Gaonkar
+        </span>
+      </h1>
+
+
+      <!-- Role -->
+      <p
+        class="reveal mt-6
+               text-slate-300
+               font-alt
+               text-base sm:text-lg md:text-xl
+               max-w-3xl mx-auto"
+      >
+        Full Stack Developer
+
+        <span class="text-slate-500">
+          |
+        </span>
+
+        Building Web Applications
+      </p>
+
+
+      <!-- Introduction -->
+      <p
+        class="reveal mt-5
+               text-slate-400
+               font-alt
+               text-sm sm:text-base md:text-lg
+               max-w-2xl mx-auto
+               leading-relaxed"
+      >
+        Computer Science Engineering student passionate about building
+        full-stack applications, solving real-world problems, and exploring
+        modern technologies across development and DevOps.
+      </p>
+
+
+      <!-- CTA -->
+      <div
+        class="reveal mt-10
+               flex flex-wrap
+               items-center justify-center
+               gap-4"
+      >
+
+        <a
+          href="#projects"
+          class="magnetic btn-primary
+                 font-alt font-medium
+                 px-7 py-3.5 rounded-full
+                 text-sm transition-all duration-300"
+        >
+          View Projects
+        </a>
+
+
+        <a
+          href="#contact"
+          class="magnetic glass glow-hover
+                 font-alt font-medium
+                 px-7 py-3.5 rounded-full
+                 text-sm transition-all duration-300"
+        >
+          Contact Me
+        </a>
+
+      </div>
+
+
+      <!-- Scroll Indicator -->
+      <div class="reveal mt-16 flex justify-center">
+
+        <a
+          href="#about"
+          class="text-slate-400 text-2xl animate-bounce"
+          aria-label="Scroll to About section"
+        >
+          <iconify-icon icon="lucide:chevron-down"></iconify-icon>
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =====================================================
+       ABOUT
+  ====================================================== -->
+
+  <section
+    id="about"
+    class="section max-w-7xl mx-auto
+           px-6 md:px-10 py-28"
+  >
+
+    <!-- Heading -->
+    <div class="text-center mb-16 reveal">
+
+      <p class="badge inline-block mb-4">
+        About
+      </p>
+
+      <h2
+        class="font-display
+               text-3xl md:text-5xl
+               font-semibold"
+      >
+        A little
+        <span class="gradient-text">
+          about me
+        </span>
+      </h2>
+
+    </div>
+
+
+    <!-- About Layout -->
+    <div
+      class="grid md:grid-cols-5
+             gap-12 items-center"
+    >
+
+
+      <!-- =================================================
+           PROFILE IMAGE
+      ================================================== -->
+
+      <div
+        class="md:col-span-2
+               flex justify-center
+               reveal relative"
+      >
+
+        <!-- Floating Cube -->
+        <div
+          class="shape3d shape3d-cube
+                 hidden md:block"
+          style="left:-3rem; top:-2rem; --size:34px;"
+        >
+
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+
+        </div>
+
+
+        <!-- Floating Pyramid -->
+        <div
+          class="shape3d shape3d-pyramid
+                 hidden md:block"
+          style="right:-2.5rem; bottom:-1rem;"
+        >
+
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+
+        </div>
+
+
+        <!-- Profile -->
+        <div
+          class="relative tilt-photo"
+          style="perspective:900px;"
+        >
+
+          <div
+            class="absolute -inset-4
+                   rounded-full
+                   bg-gradient-to-tr
+                   from-indigo-500
+                   via-violet-500
+                   to-cyan-400
+                   blur-2xl
+                   opacity-40
+                   animate-pulse"
+          ></div>
+
+
+          <div
+            class="tilt-photo-inner
+                   relative
+                   w-56 h-56
+                   md:w-72 md:h-72
+                   rounded-full
+                   glass-border
+                   p-1.5
+                   transition-transform
+                   duration-300"
+          >
+
+            <img
+              id="profilePhoto"
+              src="/images/image.png"
+              alt="Portrait of Priyanka Gaonkar"
+              class="w-full h-full
+                     object-cover
+                     rounded-full"
+              loading="lazy"
+            />
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- =================================================
+           ABOUT QUESTIONS
+      ================================================== -->
+
+      <div
+        class="md:col-span-3
+               reveal
+               about-panel"
+      >
+
+
+        <!-- QUESTION 01 -->
+        <div class="about-item">
+
+          <button
+            class="about-question"
+            type="button"
+            aria-expanded="false"
+          >
+
+            <span class="question-number">
+              01
+            </span>
+
+            <span class="question-text">
+              Who am I?
+            </span>
+
+            <span class="question-icon">
+              +
+            </span>
+
+          </button>
+
+
+          <div class="about-answer-wrap">
+
+            <p class="about-answer">
+
+              I'm a
+
+              <span class="gradient-text">
+                Computer Science Engineering student
+              </span>
+
+              and
+
+              <span class="gradient-text">
+                Full Stack Developer
+              </span>
+
+              who enjoys building practical and scalable
+              digital solutions.
+
+            </p>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- QUESTION 02 -->
+        <div class="about-item">
+
+          <button
+            class="about-question"
+            type="button"
+            aria-expanded="false"
+          >
+
+            <span class="question-number">
+              02
+            </span>
+
+            <span class="question-text">
+              What do I build?
+            </span>
+
+            <span class="question-icon">
+              +
+            </span>
+
+          </button>
+
+
+          <div class="about-answer-wrap">
+
+            <p class="about-answer">
+
+              I build
+
+              <span class="gradient-text">
+                full-stack web applications
+              </span>
+
+              that focus on solving real-world problems
+              with clean UI, reliable backend systems,
+              and modern technologies.
+
+            </p>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- QUESTION 03 -->
+        <div class="about-item">
+
+          <button
+            class="about-question"
+            type="button"
+            aria-expanded="false"
+          >
+
+            <span class="question-number">
+              03
+            </span>
+
+            <span class="question-text">
+              What technologies do I use?
+            </span>
+
+            <span class="question-icon">
+              +
+            </span>
+
+          </button>
+
+
+          <div class="about-answer-wrap">
+
+            <div class="about-tech-flow">
+
+              <span class="about-tech">
+                React.js
+              </span>
+
+              <span class="flow-arrow">
+                →
+              </span>
+
+              <span class="about-tech">
+                Node.js
+              </span>
+
+              <span class="flow-arrow">
+                →
+              </span>
+
+              <span class="about-tech">
+                Express.js
+              </span>
+
+              <span class="flow-arrow">
+                →
+              </span>
+
+              <span class="about-tech">
+                MongoDB
+              </span>
+
+              <span class="flow-arrow">
+                →
+              </span>
+
+              <span class="about-tech">
+                MySQL
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- QUESTION 04 -->
+        <div class="about-item">
+
+          <button
+            class="about-question"
+            type="button"
+            aria-expanded="false"
+          >
+
+            <span class="question-number">
+              04
+            </span>
+
+            <span class="question-text">
+              What else do I know?
+            </span>
+
+            <span class="question-icon">
+              +
+            </span>
+
+          </button>
+
+
+          <div class="about-answer-wrap">
+
+            <div class="skill-mini-grid">
+
+              <span class="mini-skill">
+                Python
+              </span>
+
+              <span class="mini-skill">
+                Java
+              </span>
+
+              <span class="mini-skill">
+                C
+              </span>
+
+              <span class="mini-skill">
+                JavaScript
+              </span>
+
+              <span class="mini-skill">
+                Git
+              </span>
+
+              <span class="mini-skill">
+                GitHub
+              </span>
+
+              <span class="mini-skill">
+                Docker
+              </span>
+
+              <span class="mini-skill">
+                Jenkins
+              </span>
+
+              <span class="mini-skill">
+                Ansible
+              </span>
+
+              <span class="mini-skill">
+                CI/CD
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =====================================================
+       SKILLS
+  ====================================================== -->
+
+  <section
+    id="skills"
+    class="section max-w-7xl mx-auto
+           px-6 md:px-10 py-28"
+  >
+
+    <!-- Heading -->
+    <div class="text-center mb-14 reveal">
+
+      <p class="badge inline-block mb-4">
+        Skills
+      </p>
+
+      <h2
+        class="font-display
+               text-3xl md:text-5xl
+               font-semibold"
+      >
+        My
+        <span class="gradient-text">
+          tech stack
+        </span>
+      </h2>
+
+      <p
+        class="text-slate-400
+               font-alt
+               text-sm md:text-base
+               max-w-xl mx-auto mt-5"
+      >
+        The technologies I use to build, manage and deploy
+        full-stack applications.
+      </p>
+
+    </div>
+
+
+    <!-- Tech Stack -->
+    <div
+      class="tech-stack-container reveal"
+    >
+
+      <!-- CENTER -->
+      <div class="tech-center">
+
+        <div class="tech-center-content">
+
+          <span class="tech-center-small">
+            I BUILD WITH
+          </span>
+
+          <span class="tech-center-title">
+            FULL STACK
+          </span>
+
+          <span class="tech-center-subtitle">
+            DEVELOPMENT
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- LANGUAGES -->
+      <div
+        class="tech-group
+               tech-group-top"
+      >
+
+        <span class="tech-label">
+          LANGUAGES
+        </span>
+
+        <div class="tech-pills">
+
+          <div class="tech-pill">
+            <iconify-icon icon="logos:python"></iconify-icon>
+            Python
+          </div>
+
+          <div class="tech-pill">
+            <iconify-icon icon="logos:java"></iconify-icon>
+            Java
+          </div>
+
+          <div class="tech-pill">
+            <iconify-icon icon="simple-icons:c"></iconify-icon>
+            C
+          </div>
+
+          <div class="tech-pill">
+            <iconify-icon icon="logos:javascript"></iconify-icon>
+            JavaScript
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- FRONTEND -->
+      <div
+        class="tech-group
+               tech-group-left"
+      >
+
+        <span class="tech-label">
+          FRONTEND
+        </span>
+
+        <div class="tech-pills">
+
+          <div class="tech-pill">
+            <iconify-icon icon="logos:react"></iconify-icon>
+            React.js
+          </div>
+
+          <div class="tech-pill">
+            <iconify-icon icon="logos:react"></iconify-icon>
+            React Native
+          </div>
+
+          <div class="tech-pill">
+            <iconify-icon icon="logos:html-5"></iconify-icon>
+            HTML5
+          </div>
+
+          <div class="tech-pill">
+            <iconify-icon icon="logos:css-3"></iconify-icon>
+            CSS3
+          </div>
+
+          <div class="tech-pill">
+            <iconify-icon icon="logos:tailwindcss-icon"></iconify-icon>
+            Tailwind CSS
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- BACKEND -->
+      <div
+        class="tech-group
+               tech-group-right"
+      >
+
+        <span class="tech-label">
+          BACKEND
+        </span>
+
+        <div class="tech-pills">
+
+          <div class="tech-pill">
+            <iconify-icon icon="logos:nodejs-icon"></iconify-icon>
+            Node.js
+          </div>
+
+          <div class="tech-pill">
+            <iconify-icon icon="simple-icons:express"></iconify-icon>
+            Express.js
+          </div>
+
+          <div class="tech-pill">
+            <iconify-icon icon="logos:python"></iconify-icon>
+            Django
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- DATABASE -->
+      <div
+        class="tech-group
+               tech-group-bottom-left"
+      >
+
+        <span class="tech-label">
+          DATABASE
+        </span>
+
+        <div class="tech-pills">
+
+          <div class="tech-pill">
+            <iconify-icon icon="logos:mysql"></iconify-icon>
+            MySQL
+          </div>
+
+          <div class="tech-pill">
+            <iconify-icon icon="logos:mongodb-icon"></iconify-icon>
+            MongoDB
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- DEVOPS -->
+      <div
+        class="tech-group
+               tech-group-bottom-right"
+      >
+
+        <span class="tech-label">
+          DEVOPS & TOOLS
+        </span>
+
+        <div class="tech-pills">
+
+          <div class="tech-pill">
+            <iconify-icon icon="logos:git-icon"></iconify-icon>
+            Git
+          </div>
+
+          <div class="tech-pill">
+            <iconify-icon icon="logos:github-icon"></iconify-icon>
+            GitHub
+          </div>
+
+          <div class="tech-pill">
+            <iconify-icon icon="logos:docker-icon"></iconify-icon>
+            Docker
+          </div>
+
+          <div class="tech-pill">
+            <iconify-icon icon="logos:jenkins"></iconify-icon>
+            Jenkins
+          </div>
+
+          <div class="tech-pill">
+            <iconify-icon icon="logos:ansible"></iconify-icon>
+            Ansible
+          </div>
+
+          <div class="tech-pill">
+            <iconify-icon icon="logos:github-actions"></iconify-icon>
+            GitHub Actions
+          </div>
+
+          <div class="tech-pill">
+            <iconify-icon icon="simple-icons:terraform"></iconify-icon>
+            Terraform
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =====================================================
+       EXPERIENCE
+  ====================================================== -->
+
+  <section
+    id="experience"
+    class="section max-w-7xl mx-auto
+           px-6 md:px-10 py-28"
+  >
+
+    <!-- Heading -->
+    <div class="text-center mb-20 reveal">
+
+      <p
+        class="badge inline-flex
+               items-center gap-2 mb-5"
+      >
+
+        <iconify-icon icon="lucide:briefcase"></iconify-icon>
+
+        Experience
+
+      </p>
+
+
+      <h2
+        class="font-display
+               text-3xl md:text-5xl
+               font-semibold"
+      >
+
+        Where code meets
+
+        <span class="gradient-text">
+          design
+        </span>
+
+      </h2>
+
+
+      <p
+        class="text-slate-400
+               font-alt
+               text-sm md:text-base
+               max-w-2xl mx-auto
+               mt-5 leading-relaxed"
+      >
+
+        Experience across web development,
+        UI/UX design, responsive interfaces,
+        and building user-focused digital experiences.
+
+      </p>
+
+    </div>
+
+
+
+    <!-- EXPERIENCE TIMELINE -->
+    <div class="experience-timeline relative">
+
+      <!-- Timeline Line -->
+      <div class="experience-line"></div>
+
+
+      <!-- EXPERIENCE ITEM -->
+      <div class="experience-item reveal">
+
+
+        <!-- LEFT -->
+        <div class="experience-side experience-side-left">
+
+          <div class="experience-meta">
+
+            <span class="experience-year">
+              2025
+            </span>
+
+            <span class="experience-duration">
+              Sep — Oct
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- CENTER -->
+        <div class="experience-dot-wrapper">
+
+          <div class="experience-dot">
+
+            <iconify-icon
+              icon="lucide:briefcase"
+            ></iconify-icon>
+
+          </div>
+
+        </div>
+
+
+        <!-- RIGHT -->
+        <div
+          class="experience-side
+                 experience-side-right"
+        >
+
+          <article
+            class="experience-card
+                   glass glass-border"
+          >
+
+            <!-- Glow -->
+            <div class="experience-card-glow"></div>
+
+
+            <!-- Header -->
+            <div class="experience-header">
+
+              <div>
+
+                <div class="experience-company">
+
+                  <span class="company-indicator"></span>
+
+                  InLighnX Global Pvt. Ltd.
+
+                </div>
+
+
+                <h3 class="experience-title">
+
+                  Web Development Intern
+
+                </h3>
+
+              </div>
+
+
+              <span class="experience-type">
+                Internship
+              </span>
+
+            </div>
+
+
+            <!-- Date -->
+            <div class="experience-date">
+
+              <iconify-icon
+                icon="lucide:calendar-days"
+              ></iconify-icon>
+
+              <span>
+                September 2025 — October 2025
+              </span>
+
+            </div>
+
+
+            <!-- Divider -->
+            <div class="experience-divider"></div>
+
+
+            <!-- Features -->
+            <div class="experience-grid">
+
+
+              <!-- Development -->
+              <div
+                class="experience-feature
+                       development-feature"
+              >
+
+                <div class="experience-feature-icon">
+
+                  <iconify-icon
+                    icon="lucide:code-2"
+                  ></iconify-icon>
+
+                </div>
+
+
+                <div>
+
+                  <h4>
+                    Development
+                  </h4>
+
+                  <p>
+                    Worked on responsive web interfaces
+                    and contributed to frontend and backend
+                    development tasks.
+                  </p>
+
+                </div>
+
+              </div>
+
+
+
+              <!-- Design -->
+              <div
+                class="experience-feature
+                       design-feature"
+              >
+
+                <div class="experience-feature-icon">
+
+                  <iconify-icon
+                    icon="lucide:palette"
+                  ></iconify-icon>
+
+                </div>
+
+
+                <div>
+
+                  <h4>
+                    UI / UX Design
+                  </h4>
+
+                  <p>
+                    Explored layouts, visual concepts,
+                    and user-focused design approaches
+                    for clean digital experiences.
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <!-- Technical Skills -->
+            <div class="experience-skills">
+
+              <p>
+                TECHNICAL AREAS
+              </p>
+
+
+              <div class="experience-tags">
+
+                <span>
+                  <iconify-icon
+                    icon="lucide:globe"
+                  ></iconify-icon>
+                  Web Development
+                </span>
+
+                <span>
+                  <iconify-icon
+                    icon="lucide:layout-template"
+                  ></iconify-icon>
+                  UI/UX Design
+                </span>
+
+                <span>
+                  <iconify-icon
+                    icon="lucide:monitor-smartphone"
+                  ></iconify-icon>
+                  Responsive Design
+                </span>
+
+                <span>
+                  <iconify-icon
+                    icon="lucide:code"
+                  ></iconify-icon>
+                  Frontend
+                </span>
+
+                <span>
+                  <iconify-icon
+                    icon="lucide:server"
+                  ></iconify-icon>
+                  Backend
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <!-- Footer -->
+            <div class="experience-footer">
+
+              <div class="experience-footer-icon">
+
+                <iconify-icon
+                  icon="lucide:terminal"
+                ></iconify-icon>
+
+              </div>
+
+
+              <span>
+                Building • Designing • Learning
+              </span>
+
+
+              <div class="experience-footer-line"></div>
+
+
+              <span class="experience-current">
+                2025
+              </span>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =====================================================
+       PROJECTS
+  ====================================================== -->
+
+  <section
+    id="projects"
+    class="section max-w-7xl mx-auto
+           px-6 md:px-10 py-28 relative"
+  >
+
+    <!-- Decorative Cube -->
+    <div
+      class="shape3d shape3d-cube
+             hidden lg:block"
+      style="left:-1rem; top:2rem;"
+    >
+
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </div>
+
+
+    <!-- Heading -->
+    <div class="text-center mb-12 reveal">
+
+      <p class="badge inline-block mb-4">
+        Projects
+      </p>
+
+
+      <h2
+        class="font-display
+               text-3xl md:text-5xl
+               font-semibold"
+      >
+
+        Things I've
+
+        <span class="gradient-text">
+          built
+        </span>
+
+      </h2>
+
+
+      <p
+        class="text-slate-400
+               font-alt
+               text-sm md:text-base
+               max-w-2xl mx-auto
+               mt-5"
+      >
+
+        A selection of projects where I combine
+        development, problem-solving, and design.
+
+      </p>
+
+    </div>
+
+
+    <!-- IMPORTANT:
+         Your script.js will generate the actual cards here.
+         CSS forces all cards to equal height.
+    -->
+    <div
+      id="projectsGrid"
+      class="grid
+             grid-cols-1
+             sm:grid-cols-2
+             lg:grid-cols-4
+             gap-5
+             items-stretch"
+    ></div>
+
+  </section>
+
+
+
+  <!-- =====================================================
+       RESUME
+  ====================================================== -->
+
+  <section
+    id="resume"
+    class="section max-w-5xl mx-auto
+           px-6 md:px-10 py-24 relative"
+  >
+
+    <!-- Pyramid -->
+    <div
+      class="shape3d shape3d-pyramid
+             hidden lg:block"
+      style="right:-1rem; top:1rem;"
+    >
+
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </div>
+
+
+    <!-- Resume Card -->
+    <div
+      class="glass glass-border
+             rounded-3xl
+             p-8 md:p-12
+             reveal"
+    >
+
+      <div
+        class="flex flex-col md:flex-row
+               items-center justify-between
+               gap-8"
+      >
+
+
+        <!-- Resume Content -->
+        <div
+          class="text-center
+                 md:text-left"
+        >
+
+          <p class="badge inline-block mb-4">
+            Resume
+          </p>
+
+
+          <h2
+            class="font-display
+                   text-3xl md:text-4xl
+                   font-semibold mb-4"
+          >
+
+            Want the full
+
+            <span class="gradient-text">
+              picture?
+            </span>
+
+          </h2>
+
+
+          <p
+            class="text-slate-400
+                   font-alt
+                   text-sm md:text-base
+                   max-w-xl
+                   leading-relaxed"
+          >
+
+            Explore my technical skills,
+            projects, experience, and academic
+            background in my resume.
+
+          </p>
+
+        </div>
+
+
+        <!-- Resume Actions -->
+        <div
+          class="flex flex-col
+                 sm:flex-row
+                 gap-3
+                 flex-shrink-0"
+        >
+
+          <!-- View -->
+          <a
+            href="resume.pdf"
+            target="_blank"
+            rel="noopener"
+            class="magnetic glass glow-hover
+                   inline-flex items-center
+                   justify-center gap-2
+                   px-6 py-3
+                   rounded-full
+                   text-sm font-alt
+                   border border-white/10"
+          >
+
+            <iconify-icon
+              icon="lucide:eye"
+            ></iconify-icon>
+
+            View Resume
+
+          </a>
+
+
+          <!-- Download -->
+          <a
+            href="resume.pdf"
+            download
+            class="magnetic btn-primary
+                   inline-flex items-center
+                   justify-center gap-2
+                   px-6 py-3
+                   rounded-full
+                   text-sm font-alt
+                   font-medium
+                   transition-all duration-300"
+          >
+
+            <iconify-icon
+              icon="lucide:download"
+            ></iconify-icon>
+
+            Download PDF
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =====================================================
+       CONTACT
+  ====================================================== -->
+
+  <section
+    id="contact"
+    class="section max-w-5xl mx-auto
+           px-6 md:px-10 py-24 relative"
+  >
+
+    <!-- Diamond -->
+    <div
+      class="shape3d shape3d-diamond
+             hidden lg:block"
+      style="left:-2rem; top:2rem;"
+    >
+
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </div>
+
+
+    <!-- Heading -->
+    <div class="text-center mb-12 reveal">
+
+      <p class="badge inline-flex items-center gap-2 mb-4">
+
+        <iconify-icon
+          icon="lucide:send"
+        ></iconify-icon>
+
+        Contact
+
+      </p>
+
+
+      <h2
+        class="font-display
+               text-3xl md:text-5xl
+               font-semibold"
+      >
+
+        Let's connect and
+
+        <span class="gradient-text">
+          build something
+        </span>
+
+      </h2>
+
+
+      <p
+        class="text-slate-400
+               font-alt
+               text-sm md:text-base
+               max-w-xl mx-auto
+               mt-5"
+      >
+
+        I'm open to opportunities,
+        collaborations, internships,
+        and interesting projects.
+
+      </p>
+
+    </div>
+
+
+
+    <!-- Contact Content -->
+    <div
+      class="max-w-3xl mx-auto reveal"
+    >
+
+
+      <!-- CONTACT CARDS -->
+      <div
+        class="grid
+               sm:grid-cols-2
+               gap-4 mb-8"
+      >
+
+
+        <!-- EMAIL -->
+        <a
+          href="mailto:gaonkarpriyanka71@gmail.com"
+          class="glass glass-border glow-hover
+                 rounded-2xl p-5
+                 flex items-center gap-4
+                 transition"
+        >
+
+          <div
+            class="w-11 h-11
+                   rounded-xl
+                   bg-indigo-500/10
+                   border border-indigo-400/20
+                   flex items-center
+                   justify-center
+                   flex-shrink-0"
+          >
+
+            <iconify-icon
+              icon="lucide:mail"
+              class="text-xl text-indigo-400"
+            ></iconify-icon>
+
+          </div>
+
+
+          <div>
+
+            <p
+              class="text-xs
+                     text-slate-500
+                     font-alt"
+            >
+              Email
+            </p>
+
+
+            <p
+              class="text-sm
+                     text-slate-200
+                     font-alt
+                     break-all"
+            >
+              gaonkarpriyanka71@gmail.com
+            </p>
+
+          </div>
+
+        </a>
+
+
+
+        <!-- WHATSAPP -->
+        <a
+          href="https://wa.me/YOUR_PHONE_NUMBER"
+          target="_blank"
+          rel="noopener"
+          class="glass glass-border glow-hover
+                 rounded-2xl p-5
+                 flex items-center gap-4
+                 transition"
+        >
+
+          <div
+            class="w-11 h-11
+                   rounded-xl
+                   bg-green-500/10
+                   border border-green-400/20
+                   flex items-center
+                   justify-center
+                   flex-shrink-0"
+          >
+
+            <iconify-icon
+              icon="logos:whatsapp-icon"
+              class="text-xl"
+            ></iconify-icon>
+
+          </div>
+
+
+          <div>
+
+            <p
+              class="text-xs
+                     text-slate-500
+                     font-alt"
+            >
+              WhatsApp
+            </p>
+
+
+            <p
+              class="text-sm
+                     text-slate-200
+                     font-alt"
+            >
+              Let's connect
+            </p>
+
+          </div>
+
+        </a>
+
+      </div>
+
+
+
+      <!-- SOCIAL LINKS -->
+      <div
+        class="flex
+               justify-center
+               items-center
+               gap-4"
+      >
+
+
+        <!-- GitHub -->
+        <a
+          href="https://github.com/PriyankaGaonkar120"
+          target="_blank"
+          rel="noopener"
+          aria-label="GitHub profile"
+          class="magnetic glass glow-hover
+                 w-12 h-12
+                 rounded-full
+                 flex items-center
+                 justify-center
+                 text-xl
+                 transition"
+        >
+
+          <iconify-icon
+            icon="simple-icons:github"
+            style="color:#ffffff;"
+          ></iconify-icon>
+
+        </a>
+
+
+
+        <!-- LinkedIn -->
+        <a
+          href="https://www.linkedin.com/in/priyanka-gaonkar"
+          target="_blank"
+          rel="noopener"
+          aria-label="LinkedIn profile"
+          class="magnetic glass glow-hover
+                 w-12 h-12
+                 rounded-full
+                 flex items-center
+                 justify-center
+                 text-xl
+                 transition"
+        >
+
+          <iconify-icon
+            icon="simple-icons:linkedin"
+            style="color:#0A66C2;"
+          ></iconify-icon>
+
+        </a>
+
+
+
+        <!-- LeetCode -->
+        <a
+          href="https://leetcode.com/u/Priyanka_Gaonkar/"
+          target="_blank"
+          rel="noopener"
+          aria-label="LeetCode profile"
+          class="magnetic glass glow-hover
+                 w-12 h-12
+                 rounded-full
+                 flex items-center
+                 justify-center
+                 text-xl
+                 transition"
+        >
+
+          <iconify-icon
+            icon="simple-icons:leetcode"
+            style="color:#FFA116;"
+          ></iconify-icon>
+
+        </a>
+
+
+
+        <!-- Email -->
+        <a
+          href="mailto:gaonkarpriyanka71@gmail.com"
+          aria-label="Send email"
+          class="magnetic glass glow-hover
+                 w-12 h-12
+                 rounded-full
+                 flex items-center
+                 justify-center
+                 text-xl
+                 transition"
+        >
+
+          <iconify-icon
+            icon="lucide:mail"
+            class="text-indigo-400"
+          ></iconify-icon>
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =====================================================
+       FOOTER
+  ====================================================== -->
+
+  <footer
+    class="max-w-7xl mx-auto
+           px-6 md:px-10
+           py-8
+           border-t border-white/10"
+  >
+
+    <div
+      class="flex flex-col
+             md:flex-row
+             items-center
+             justify-between
+             gap-4"
+    >
+
+      <!-- Copyright -->
+      <p
+        class="text-sm
+               text-slate-500
+               font-alt
+               text-center
+               md:text-left"
+      >
+
+        ©
+
+        <span id="year"></span>
+
+        Priyanka Gaonkar.
+        All rights reserved.
+
+      </p>
+
+
+      <!-- Built -->
+      <p
+        class="text-xs
+               text-slate-600
+               font-alt
+               text-center"
+      >
+
+        Designed &amp; built with passion.
+
+      </p>
+
+
+      <!-- Back To Top -->
+      <a
+        href="#home"
+        class="magnetic glass
+               w-10 h-10
+               rounded-full
+               flex items-center
+               justify-center
+               text-slate-400
+               hover:text-cyan-400
+               transition"
+        aria-label="Back to top"
+      >
+
+        <iconify-icon
+          icon="lucide:arrow-up"
+        ></iconify-icon>
+
+      </a>
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+  ====================================================== -->
+
+  <script src="script.js"></script>
+
+</body>
+</html>
